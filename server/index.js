@@ -9,6 +9,7 @@ import authRoutes from "./routes/authRoutes.js";
 import taskRoutes from "./routes/taskRoutes.js";
 import goalRoutes from "./routes/goalsRoute.js";
 import scheduleRoutes from "./routes/scheduleRoute.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js";
 dotenv.config();
 dns.setServers([
   "8.8.8.8",
@@ -30,6 +31,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/goals", goalRoutes);
 app.use("/api/schedule", scheduleRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 // Test route
 app.get("/", (req, res) => {
   res.status(200).json({

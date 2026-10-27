@@ -1,0 +1,51 @@
+
+@import "tailwindcss";
+
+@theme {
+  --color-app-bg: #121212;
+  --color-app-surface: #18181b;
+  --color-app-primary: #0066ff;
+  --color-app-muted: #a1a1aa;
+  --color-app-border: #303036;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: #121212;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #121212;
+  color: #fafafa;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+::selection {
+  background: #0066ff;
+  color: #ffffff;
+}
