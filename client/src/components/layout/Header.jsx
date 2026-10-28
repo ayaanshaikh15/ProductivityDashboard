@@ -1,5 +1,6 @@
 
 import { Menu, Search, Bell, UserRound } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Header({
   title,
@@ -42,17 +43,11 @@ export default function Header({
             </kbd>
           </div>
 
-          <button
-            aria-label="Notifications"
-            className="relative rounded-xl border border-white/10 bg-[#18181B] p-2.5 text-zinc-400 transition hover:text-white"
-          >
-            <Bell size={19} />
-            <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-[#0066FF]" />
-          </button>
+         
 
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-[#202024] text-zinc-300">
+          <Link to={'/settings'} className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-[#202024] text-zinc-300">
             <UserRound size={20} />
-          </div>
+          </Link>
         </div>
       </div>
     </header>

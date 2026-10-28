@@ -12,6 +12,8 @@ import {
   LogOut,
   X,
 } from "lucide-react";
+import LogoutModal from "../LogoutModel";
+import { useState } from "react";
 
 const navigation = [
   { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
@@ -25,6 +27,8 @@ const navigation = [
 ];
 
 export default function Sidebar({ mobileOpen, onClose, onLogout }) {
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+const [loggingOut, setLoggingOut] = useState(false);
   return (
     <>
       {mobileOpen && (
@@ -42,9 +46,13 @@ export default function Sidebar({ mobileOpen, onClose, onLogout }) {
       >
         <div className="flex h-20 items-center justify-between border-b border-white/10 px-6">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#0066FF]">
-              <LayoutDashboard size={22} className="text-white" />
-            </div>
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl">
+  <img
+    src="/ZLogo.png"
+    className="h-full w-full object-contain"
+    alt="ZidioTask Logo"
+  />
+</div>
             <div>
               <h1 className="text-lg font-bold tracking-tight text-white">
                 ZidioTask
@@ -88,7 +96,7 @@ export default function Sidebar({ mobileOpen, onClose, onLogout }) {
 
         <div className="border-t border-white/10 p-4">
           <button
-            onClick={onLogout}
+            onClick={() => setShowLogoutModal(true)}
             className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-zinc-400 transition hover:bg-red-500/10 hover:text-red-400"
           >
             <LogOut size={19} />
@@ -98,7 +106,22 @@ export default function Sidebar({ mobileOpen, onClose, onLogout }) {
             ZidioTask · Your daily workspace
           </p>
         </div>
+
       </aside>
+      <LogoutModal
+  isOpen={showLogoutModal}
+  loading={loggingOut}
+  onCancel={() => setShowLogoutModal(false)}
+  onConfirm={async () => {
+    setLoggingOut(true);
+    try {
+      await onLogout();
+    } finally {
+      setLoggingOut(false);
+      setShowLogoutModal(false);
+    }
+  }}
+/>
     </>
   );
 }

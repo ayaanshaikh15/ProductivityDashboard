@@ -10,6 +10,12 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Tasks from "./pages/Tasks";
+import Goals from "./pages/Goals";
+import Schedule from "./pages/Schedule";
+import Analytics from "./pages/Analytics";
+import Motivation from "./pages/Motivation";
+import Weather from "./pages/Weather";
+import Settings from "./pages/Settings";
 const pageInfo = {
   tasks: ["Tasks", "Organize and manage your tasks."],
   goals: ["Goals", "Track your progress toward your goals."],
@@ -76,13 +82,25 @@ function AppRoutes() {
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
            <Route path="/tasks" element={<Tasks />} />
-          {Object.keys(pageInfo).map((page) => (
-            <Route
-              key={page}
-              path={`/${page}`}
-              element={<PlaceholderPage page={page} />}
-            />
-          ))}
+            <Route path="/goals" element={<Goals />} />
+            <Route path="/schedule" element={<Schedule />} />
+            <Route path="/motivation" element={<Motivation/>}/>
+            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/weather" element={<Weather/>}/>
+          <Route path="/settings" element={<Settings/>}/>
+         {Object.keys(pageInfo)
+    .filter(
+      (page) =>
+        page !== "tasks" &&
+        page !== "goals"
+    )
+    .map((page) => (
+      <Route
+        key={page}
+        path={`/${page}`}
+        element={<PlaceholderPage page={page} />}
+      />
+    ))}
         </Route>
 
         {/* Default and unknown routes */}
